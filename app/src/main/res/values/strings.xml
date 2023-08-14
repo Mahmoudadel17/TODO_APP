@@ -23,7 +23,7 @@
     <string name="reset_password_note">*We will send you an email that will allow you to reset your password.</string>
     <string name="verify">Verify</string>
     <string name="reset_password">Reset Password</string>
-    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_home">HomeActivity</string>
 
 </resources>
