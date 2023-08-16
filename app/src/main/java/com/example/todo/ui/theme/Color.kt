@@ -22,3 +22,7 @@ val TextSplash = Color(0xFFAA9988)
 
 val homeTextViewBackgroundLight = Color(0xFFE9F8F9)
 val homeTextViewBackgroundDark = Color(0xFFE6B728E)
+
+val taskColor = Color(0xFFE6E2C3)
+
+val taskComponentsColor = Color.DarkGray

@@ -68,7 +68,7 @@ fun CheckBox(text:String,checkBox:Boolean,onCheckedChange:() -> Unit) {
         })
         Spacer(modifier = Modifier.width(2.dp))
         Text(
-            "text",
+            text,
             color = Color.DarkGray,
         )
         Spacer(modifier = Modifier.weight(1f))

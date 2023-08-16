@@ -20,6 +20,8 @@ private val DarkColorScheme = darkColorScheme(
     secondary = homeTextViewBackgroundLight,
     tertiary = Pink80,
     background = background,
+    onSurface = taskComponentsColor, //  i use it in Task icons and CheckBox
+
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -27,6 +29,8 @@ private val LightColorScheme = lightColorScheme(
     secondary = homeTextViewBackgroundLight,
     tertiary = Pink40,
     background = background,
+    onSurface = taskComponentsColor, //  i use it in Task icons and CheckBox
+
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
