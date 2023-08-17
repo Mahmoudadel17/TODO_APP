@@ -19,10 +19,9 @@ val background = Color.White
 val Splash = Color(0xFF474E68)
 val TextSplash = Color(0xFFAA9988)
 
-
 val homeTextViewBackgroundLight = Color(0xFFE9F8F9)
-val homeTextViewBackgroundDark = Color(0xFFE6B728E)
 
 val taskColor = Color(0xFFE6E2C3)
 
+val floatingActionButton = Color(0xFF19A7CE)
 val taskComponentsColor = Color.DarkGray

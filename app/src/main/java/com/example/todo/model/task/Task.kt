@@ -13,7 +13,6 @@ data class Task(
     var content:String,
     var isComplete:Boolean,
     var isFavorite:Boolean,
-    var isOpen:Boolean,
     @Nullable
     val dueDate: LocalDateTime? = LocalDateTime.now()
 )

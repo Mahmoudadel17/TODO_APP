@@ -3,6 +3,7 @@ package com.example.todo.home
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -10,6 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import com.example.todo.commonComponents.Screens
+import com.example.todo.commonComponents.authNav
+import com.example.todo.commonComponents.homeApp
+import com.example.todo.taskPreview.TasksScreenViewModel
 import com.example.todo.ui.theme.ToDoTheme
 
 class HomeActivity : ComponentActivity() {
@@ -22,25 +29,14 @@ class HomeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting2("Android")
+
+                    val navController = rememberNavController()
+                    NavHost(navController = navController, startDestination = Screens.AuthRoute.route){
+                        homeApp(navController)
+                    }
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting2(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview2() {
-    ToDoTheme {
-        Greeting2("Android")
-    }
-}
