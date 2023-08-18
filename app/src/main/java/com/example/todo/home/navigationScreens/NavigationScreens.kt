@@ -11,22 +11,22 @@ sealed class NavigationScreens(val route:String, val title:String, val icon:Imag
     object ToDay:NavigationScreens(
         route = "toDay",
         title = "To Day",
-        icon = Icons.Filled.Home
+        icon = Icons.Default.Home
     )
     object AllTasks:NavigationScreens(
         route = "allTasks",
         title = "All Tasks",
-        icon = Icons.Filled.List
+        icon = Icons.Default.List
     )
     object Favorite:NavigationScreens(
         route = "favorite",
         title = "Favorite",
-        icon = Icons.Filled.Favorite
+        icon = Icons.Default.Favorite
     )
     object Settings:NavigationScreens(
         route = "settings",
         title = "Settings",
-        icon = Icons.Filled.Settings
+        icon = Icons.Default.Settings
     )
 }
 

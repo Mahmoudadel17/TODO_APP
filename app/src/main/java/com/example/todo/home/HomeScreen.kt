@@ -17,13 +17,9 @@ import androidx.compose.material.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -98,11 +94,14 @@ fun HomeScreen(navHostController: NavHostController) {
             }
         },
         floatingActionButton = {
-            FloatingActionButton(containerColor = floatingActionButton,onClick = {
+            if (currentRoute !=  NavigationScreens.Settings.route){
+                FloatingActionButton(containerColor = floatingActionButton,onClick = {
 
-            }) {
-                Icon(imageVector = Icons.Filled.Add,tint = MaterialTheme.colorScheme.background, contentDescription = "Add")
+                }) {
+                    Icon(imageVector = Icons.Filled.Add,tint = MaterialTheme.colorScheme.background, contentDescription = "Add")
+                }
             }
+
         }
 
     ) {

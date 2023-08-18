@@ -75,13 +75,13 @@ fun BottomNav(
             ToDayTasksScreen(bottomNavController,viewModel)
         }
         composable(route = NavigationScreens.AllTasks.route){
-            AllTasksScreen(bottomNavController)
+            AllTasksScreen(bottomNavController,viewModel)
         }
         composable(route = NavigationScreens.Settings.route){
             SettingsScreens(bottomNavController)
         }
         composable(route = NavigationScreens.Favorite.route){
-            FavoriteScreen(bottomNavController)
+            FavoriteScreen(bottomNavController,viewModel)
         }
 
     }

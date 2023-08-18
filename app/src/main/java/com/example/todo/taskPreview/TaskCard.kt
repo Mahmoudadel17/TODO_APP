@@ -47,9 +47,9 @@ fun TaskItem(
     cutCornerSize: Dp = 30.dp,
     onCompleteChecked:(Task) -> Unit,
     onFavoriteClicked: (Task) -> Unit,
-    onShowDialog: () -> Unit,
+    onShowDialog: (Task) -> Unit,
     onDialogDismiss: () -> Unit,
-    onDeleteConfirm:(Task) -> Unit,
+    onDeleteConfirm:() -> Unit,
     onDateChange:(Task,Int,Int,Int) -> Unit,
     onTimeChange:(Task,Int,Int) -> Unit,
     onTaskClick: (Task) -> Unit,
@@ -134,7 +134,7 @@ fun TaskItem(
                 }
                 IconButton(
                     onClick = {
-                        onShowDialog()
+                        onShowDialog(task)
                     },
                     modifier = Modifier.weight(0.15f)
                 ) {
@@ -151,41 +151,39 @@ fun TaskItem(
                verticalAlignment = Alignment.CenterVertically,
                )
            {
-               task.dueDate?.let {
-                   Spacer(modifier = Modifier.width(7.dp))
+               Spacer(modifier = Modifier.width(7.dp))
 
-                   Icon(
-                       Icons.Filled.DateRange,
-                       contentDescription = "DueDate",
-                       tint =  MaterialTheme.colorScheme.onSurface,
-                       modifier = Modifier.clickable {
-                           showDatePicker(
-                               context,
-                               task,
-                               onDateChange
-                           )
-                       }
-                   )
-                   Spacer(modifier = Modifier.width(5.dp))
-                   Text(text = task.dueDate!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                       color = MaterialTheme.colorScheme.onSurface)
-                   Spacer(modifier = Modifier.width(40.dp))
-                   Icon(
-                       painter = painterResource(id = R.drawable.baseline_access_time_24),
-                       contentDescription = "DueTime",
-                       tint = MaterialTheme.colorScheme.onSurface,
-                       modifier = Modifier.clickable {
-                           showTimePicker(
-                               context,
-                               task,
-                               onTimeChange
-                           )
-                       }
-                   )
-                   Spacer(modifier = Modifier.width(5.dp))
-                   Text(text = task.dueDate!!.format(DateTimeFormatter.ofPattern("HH:mm")),
-                       color = MaterialTheme.colorScheme.onSurface)
-               }
+               Icon(
+                   Icons.Filled.DateRange,
+                   contentDescription = "DueDate",
+                   tint =  MaterialTheme.colorScheme.onSurface,
+                   modifier = Modifier.clickable {
+                       showDatePicker(
+                           context,
+                           task,
+                           onDateChange
+                       )
+                   }
+               )
+               Spacer(modifier = Modifier.width(5.dp))
+               Text(text = task.dueDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                   color = MaterialTheme.colorScheme.onSurface)
+               Spacer(modifier = Modifier.width(40.dp))
+               Icon(
+                   painter = painterResource(id = R.drawable.baseline_access_time_24),
+                   contentDescription = "DueTime",
+                   tint = MaterialTheme.colorScheme.onSurface,
+                   modifier = Modifier.clickable {
+                       showTimePicker(
+                           context,
+                           task,
+                           onTimeChange
+                       )
+                   }
+               )
+               Spacer(modifier = Modifier.width(5.dp))
+               Text(text = task.dueDate.format(DateTimeFormatter.ofPattern("HH:mm")),
+                   color = MaterialTheme.colorScheme.onSurface)
            }
 
         }
@@ -193,7 +191,7 @@ fun TaskItem(
             showDialog = showDialog,
             onConfirm = {
                 // Delete action here
-                onDeleteConfirm(task)
+                onDeleteConfirm()
             },
             onDismiss = {
                onDialogDismiss()

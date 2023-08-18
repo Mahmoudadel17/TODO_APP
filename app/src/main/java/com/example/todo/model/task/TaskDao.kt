@@ -12,7 +12,7 @@ interface TaskDao {
     @Query("SELECT * FROM Tasks_table")
     fun getAllTasks(): List<Task>
 
-    @Query("SELECT * FROM tasks_table WHERE id = :id")
+    @Query("SELECT * FROM Tasks_table WHERE id = :id")
     fun getTaskByID(id:Int) : Task
 
     @Insert
@@ -23,4 +23,7 @@ interface TaskDao {
 
     @Delete
     fun deleteTask(task: Task)
+
+    @Query("DELETE FROM Tasks_table WHERE id = :taskId ")
+    fun deleteTaskByID(taskId:Int)
 }

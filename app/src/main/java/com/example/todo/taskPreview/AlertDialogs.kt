@@ -79,9 +79,9 @@ fun showDatePicker(
             onDateChange(task,year,month+1,day)
             Toast.makeText(context, "$day/${month + 1}/$year", Toast.LENGTH_SHORT).show()
         },
-        /*year*/ task.dueDate!!.year,
-        /*month*/ task.dueDate!!.monthValue-1,
-        /*day*/ task.dueDate!!.dayOfMonth
+        /*year*/ task.dueDate.year,
+        /*month*/ task.dueDate.monthValue-1,
+        /*day*/ task.dueDate.dayOfMonth
     )
     datePicker.show()
 }
@@ -97,8 +97,8 @@ fun showTimePicker(
             onTimeChange(task,hour,minute)
             Toast.makeText(context,  "$hour:$minute", Toast.LENGTH_SHORT).show()
         },
-        /*hour*/ task.dueDate!!.hour,
-        /*minute*/ task.dueDate!!.minute,
+        /*hour*/ task.dueDate.hour,
+        /*minute*/ task.dueDate.minute,
         /*is24Hour*/ true
     )
     timePicker.show()
