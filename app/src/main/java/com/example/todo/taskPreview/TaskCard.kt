@@ -1,8 +1,6 @@
 package com.example.todo.taskPreview
 
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -28,6 +26,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -35,19 +36,25 @@ import androidx.core.graphics.ColorUtils
 import com.example.todo.model.task.Task
 import com.example.todo.ui.theme.taskColor
 import java.time.format.DateTimeFormatter
+import com.example.todo.R
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun TaskItem(
     task: Task,
+    showDialog:Boolean,
     modifier: Modifier = Modifier,
     cornerRadius: Dp = 10.dp,
     cutCornerSize: Dp = 30.dp,
     onCompleteChecked:(Task) -> Unit,
     onFavoriteClicked: (Task) -> Unit,
-    onDeleteClicked:(Task) -> Unit,
+    onShowDialog: () -> Unit,
+    onDialogDismiss: () -> Unit,
+    onDeleteConfirm:(Task) -> Unit,
+    onDateChange:(Task,Int,Int,Int) -> Unit,
+    onTimeChange:(Task,Int,Int) -> Unit,
     onTaskClick: (Task) -> Unit,
     ) {
+    val context = LocalContext.current
     Box(
         modifier = modifier
             .padding(5.dp)
@@ -109,7 +116,8 @@ fun TaskItem(
                     color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.weight(0.70f)
+                    modifier = Modifier.weight(0.70f),
+                    textDecoration = if (task.isComplete)TextDecoration.LineThrough else TextDecoration.None
                 )
 
                 IconButton(
@@ -126,7 +134,7 @@ fun TaskItem(
                 }
                 IconButton(
                     onClick = {
-                              onDeleteClicked(task)
+                        onShowDialog()
                     },
                     modifier = Modifier.weight(0.15f)
                 ) {
@@ -138,22 +146,59 @@ fun TaskItem(
                 }
 
             }
-           Row(verticalAlignment = Alignment.CenterVertically,)
+           Row(
+               modifier = Modifier.padding(top = 3.dp),
+               verticalAlignment = Alignment.CenterVertically,
+               )
            {
-               if (task.dueDate != null) {
+               task.dueDate?.let {
                    Spacer(modifier = Modifier.width(7.dp))
+
                    Icon(
                        Icons.Filled.DateRange,
                        contentDescription = "DueDate",
                        tint =  MaterialTheme.colorScheme.onSurface,
+                       modifier = Modifier.clickable {
+                           showDatePicker(
+                               context,
+                               task,
+                               onDateChange
+                           )
+                       }
                    )
                    Spacer(modifier = Modifier.width(5.dp))
-                   Text(text = task.dueDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+                   Text(text = task.dueDate!!.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                       color = MaterialTheme.colorScheme.onSurface)
+                   Spacer(modifier = Modifier.width(40.dp))
+                   Icon(
+                       painter = painterResource(id = R.drawable.baseline_access_time_24),
+                       contentDescription = "DueTime",
+                       tint = MaterialTheme.colorScheme.onSurface,
+                       modifier = Modifier.clickable {
+                           showTimePicker(
+                               context,
+                               task,
+                               onTimeChange
+                           )
+                       }
+                   )
+                   Spacer(modifier = Modifier.width(5.dp))
+                   Text(text = task.dueDate!!.format(DateTimeFormatter.ofPattern("HH:mm")),
                        color = MaterialTheme.colorScheme.onSurface)
                }
            }
 
         }
+        DeleteConfirmationDialog(
+            showDialog = showDialog,
+            onConfirm = {
+                // Delete action here
+                onDeleteConfirm(task)
+            },
+            onDismiss = {
+               onDialogDismiss()
+            }
+        )
 
 
     }

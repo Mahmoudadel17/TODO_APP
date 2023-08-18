@@ -12,6 +12,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -32,6 +34,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.sp
 import com.example.todo.R
 
 
@@ -87,12 +90,12 @@ fun CheckBox(text:String,checkBox:Boolean,onCheckedChange:() -> Unit) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserNameEditText(
-    userName:String = "",
-    isUsernameEmail:Boolean = false,
-    userNameErrorMessage:String = "",
+    userName:String ,
+    isUsernameError:Boolean ,
+    userNameErrorMessage:String,
     onValueChange:(String) -> Unit) {
     OutlinedTextField(
-        label = { Text("Email",style = TextStyle(color = Color.DarkGray)) },
+        label = { Text("UserName",style = TextStyle(color = Color.DarkGray)) },
         value = userName,
         onValueChange = {
             onValueChange(it)
@@ -100,8 +103,9 @@ fun UserNameEditText(
         colors = TextFieldColors(),
         shape = RoundedCornerShape(30.dp),
         modifier = Modifier
+            .padding(top = 10.dp)
             .fillMaxWidth(),
-        isError = isUsernameEmail,
+        isError = isUsernameError,
         trailingIcon = {
             Icon(imageVector = Icons.Filled.Person, contentDescription = "")
         }
@@ -124,9 +128,9 @@ fun UserNameEditText(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmailEditText(
-    email:String = "",
-    isErrorEmail:Boolean = false,
-    emailErrorMessage:String = "",
+    email:String ,
+    isErrorEmail:Boolean ,
+    emailErrorMessage:String,
     onValueChange:(String) -> Unit) {
     OutlinedTextField(
         label = { Text("Email") },
@@ -139,7 +143,9 @@ fun EmailEditText(
         colors = TextFieldColors(),
         shape = RoundedCornerShape(30.dp),
         modifier = Modifier
-            .fillMaxWidth(),
+            .padding(top = 20.dp)
+            .fillMaxWidth()
+            ,
         isError = isErrorEmail,
         trailingIcon = {
             Icon(imageVector = Icons.Filled.Email, contentDescription = "email icon")
@@ -158,10 +164,10 @@ fun EmailEditText(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordEditText(
-    password:String = "",
-    isErrorPassword:Boolean = false,
-    passwordErrorMessage:String = "",
-    showPassword:Boolean=false,
+    password:String ,
+    isErrorPassword:Boolean ,
+    passwordErrorMessage:String ,
+    showPassword:Boolean,
     onValueChange:(String) -> Unit,
     onIconButtonClick:() -> Unit
 ) {
@@ -176,8 +182,8 @@ fun PasswordEditText(
         colors =  TextFieldColors(),
         shape = RoundedCornerShape(30.dp),
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 30.dp),
+            .padding(top = 20.dp)
+            .fillMaxWidth(),
         trailingIcon = {
             IconButton(onClick = {
                 onIconButtonClick()
@@ -196,4 +202,19 @@ fun PasswordEditText(
 
     }
 
+}
+
+
+@Composable
+fun ButtonClickOn(buttonText:String,paddingValue:Int ,onButtonClick:() -> Unit ) {
+    Button (colors = ButtonDefaults.buttonColors(containerColor =MaterialTheme.colorScheme.primary),
+        enabled = true,
+        onClick = {onButtonClick()},
+        modifier = Modifier
+            .padding(top =paddingValue.dp)
+            .fillMaxWidth(1f)
+
+    ){
+        Text(text = buttonText, fontSize = 30.sp, style = TextStyle(color = MaterialTheme.colorScheme.background))
+    }
 }

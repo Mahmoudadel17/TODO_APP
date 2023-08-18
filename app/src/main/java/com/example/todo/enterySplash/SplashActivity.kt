@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.todo.auth.MainActivity
 import com.example.todo.R
-import com.example.todo.commonComponents.LottieAnimationView
+import com.example.todo.commonComponents.LottieAnimationShow
 import com.example.todo.home.HomeActivity
 import com.example.todo.ui.theme.TextSplash
 import com.example.todo.ui.theme.ToDoTheme
@@ -88,7 +88,7 @@ fun SplashScreen() {
             fontSize = 16.sp,
             color = TextSplash
         )
-        LottieAnimationView(R.raw.loading,200,250)
+        LottieAnimationShow(R.raw.loading,200,250)
 
     }
 

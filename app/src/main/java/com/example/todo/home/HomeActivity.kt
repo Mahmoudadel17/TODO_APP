@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import com.example.todo.commonComponents.AppNavigateWithOutAuth
 import com.example.todo.commonComponents.Screens
 import com.example.todo.commonComponents.authNav
 import com.example.todo.commonComponents.homeApp
@@ -20,6 +21,7 @@ import com.example.todo.taskPreview.TasksScreenViewModel
 import com.example.todo.ui.theme.ToDoTheme
 
 class HomeActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -29,11 +31,7 @@ class HomeActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-                    val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screens.AuthRoute.route){
-                        homeApp(navController)
-                    }
+                    AppNavigateWithOutAuth()
                 }
             }
         }

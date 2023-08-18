@@ -9,7 +9,7 @@ class LocalDateTimeConverter {
 
     @TypeConverter
     fun fromLocalDateTime(dateTime: LocalDateTime?): String? {
-        return dateTime?.toLocalDate()?.atStartOfDay()?.format(formatter)
+        return dateTime?.format(formatter)
     }
 
     @TypeConverter

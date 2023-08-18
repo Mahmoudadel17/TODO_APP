@@ -15,7 +15,7 @@ import com.example.todo.home.navigationScreens.AllTasksScreen
 import com.example.todo.home.navigationScreens.FavoriteScreen
 import com.example.todo.home.navigationScreens.NavigationScreens
 import com.example.todo.home.navigationScreens.SettingsScreens
-import com.example.todo.home.navigationScreens.ToDayTasksScreens
+import com.example.todo.home.navigationScreens.ToDayTasksScreen
 import com.example.todo.taskPreview.TasksScreenViewModel
 
 @Composable
@@ -27,6 +27,13 @@ fun AppNavigate() {
     }
 }
 
+@Composable
+fun AppNavigateWithOutAuth() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = Screens.AppNavigation.route){
+        homeApp(navController)
+    }
+}
 
 
 fun NavGraphBuilder.authNav(navController: NavController){
@@ -57,11 +64,15 @@ fun NavGraphBuilder.homeApp(navController: NavHostController) {
 
 
 @Composable
-fun BottomNav(appNavController: NavHostController, bottomNavController: NavHostController) {
+fun BottomNav(
+    appNavController: NavHostController,
+    bottomNavController: NavHostController,
+    viewModel: TasksScreenViewModel
+) {
     NavHost(navController = appNavController, startDestination = NavigationScreens.ToDay.route){
 
         composable(route = NavigationScreens.ToDay.route){
-            ToDayTasksScreens(bottomNavController)
+            ToDayTasksScreen(bottomNavController,viewModel)
         }
         composable(route = NavigationScreens.AllTasks.route){
             AllTasksScreen(bottomNavController)

@@ -14,7 +14,7 @@ data class Task(
     var isComplete:Boolean,
     var isFavorite:Boolean,
     @Nullable
-    val dueDate: LocalDateTime? = LocalDateTime.now()
+    var dueDate: LocalDateTime? = LocalDateTime.now()
 )
 
 
