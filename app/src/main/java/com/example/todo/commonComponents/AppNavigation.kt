@@ -21,7 +21,7 @@ import com.example.todo.taskPreview.TasksScreenViewModel
 @Composable
 fun AppNavigate() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screens.AuthRoute.route){
+    NavHost(navController = navController, startDestination = Screens.HomeRoute.route){
         authNav(navController)
         homeApp(navController)
     }

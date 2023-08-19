@@ -86,6 +86,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
     implementation("com.google.accompanist:accompanist-pager:0.20.0")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
+    implementation("com.exyte:animated-navigation-bar:1.0.0")
+
 
 
 }
