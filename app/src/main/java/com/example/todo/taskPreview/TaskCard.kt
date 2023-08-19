@@ -2,6 +2,7 @@ package com.example.todo.taskPreview
 
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -28,10 +29,12 @@ import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.graphics.ColorUtils
 import com.example.todo.model.task.Task
 import com.example.todo.ui.theme.taskColor
@@ -201,5 +204,40 @@ fun TaskItem(
 
     }
 
+}
+
+
+
+@Composable
+fun NoTasks(
+    image: Int ,
+    imageContentDescription:String ,
+    textTitle:String ,
+    textContent:String
+) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .padding(5.dp)
+            .fillMaxSize()
+    )
+    {
+        Image(
+            painter = painterResource(id =image),
+            contentDescription = imageContentDescription)
+        Text(text = textTitle, fontSize = 25.sp,color = Color.Gray)
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 60.dp)
+        ){
+            Text(
+                text = textContent,
+                fontSize = 15.sp,
+                textAlign = TextAlign.Justify,
+            )
+        }
+
+    }
 }
 

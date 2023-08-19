@@ -14,7 +14,7 @@ import com.example.todo.home.HomeScreen
 import com.example.todo.home.navigationScreens.AllTasksScreen
 import com.example.todo.home.navigationScreens.FavoriteScreen
 import com.example.todo.home.navigationScreens.NavigationScreens
-import com.example.todo.home.navigationScreens.SettingsScreens
+import com.example.todo.home.navigationScreens.SettingsScreen
 import com.example.todo.home.navigationScreens.ToDayTasksScreen
 import com.example.todo.taskPreview.TasksScreenViewModel
 
@@ -78,7 +78,7 @@ fun BottomNav(
             AllTasksScreen(bottomNavController,viewModel)
         }
         composable(route = NavigationScreens.Settings.route){
-            SettingsScreens(bottomNavController)
+            SettingsScreen(bottomNavController)
         }
         composable(route = NavigationScreens.Favorite.route){
             FavoriteScreen(bottomNavController,viewModel)

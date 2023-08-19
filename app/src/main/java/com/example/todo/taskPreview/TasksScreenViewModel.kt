@@ -85,7 +85,12 @@ class TasksScreenViewModel :ViewModel(){
     }
 
 
-
+    fun filterToDay(task: Task):Boolean{
+        val currentDateTime = LocalDateTime.now()
+        return task.dueDate.year == currentDateTime.year
+                &&task.dueDate.monthValue-1 == currentDateTime.monthValue-1
+                &&task.dueDate.dayOfMonth == currentDateTime.dayOfMonth
+    }
 
     fun formatDate(): String {
         val date = LocalDate.now()
